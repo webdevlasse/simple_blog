@@ -29,6 +29,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'faker'
   gem 'devise'
+  gem 'cancan'
 end
 
 # To use ActiveModel has_secure_password
