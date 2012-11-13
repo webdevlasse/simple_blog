@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authorize_user!
   # GET /articles
   # GET /articles.json
   def index
@@ -81,4 +82,15 @@ class ArticlesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def authorize_user!
+      p "*" * 100
+      p params[:action]
+      if ["destroy", "update"].include?(params[:action])
+        unless can? params[:action], Article
+          redirect_to articles_path, notice: "NO! You are not authorized!!!"
+        end
+      end
+    end
 end

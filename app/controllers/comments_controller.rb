@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :authorize_user!
+
   # POST /comments
   # POST /comments.json
   def create
@@ -27,4 +29,14 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def authorize_user!
+      if ["destroy", "update"].include?(params[:action])
+        unless can? params[:action], Comment
+          redirect_to articles_path, notice: "NO! You are not authorized!!!"
+        end
+      end
+    end
+
 end

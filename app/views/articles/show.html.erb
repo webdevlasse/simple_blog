@@ -5,8 +5,9 @@
 </h2>
 
 <%= raw @article.body %>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<% if can? :destroy, Article %>
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+<%end%>
 <%= link_to 'Back', articles_path %>
 
 <hr>

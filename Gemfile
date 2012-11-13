@@ -30,6 +30,8 @@ group :test, :development do
   gem 'faker'
   gem 'devise'
   gem 'cancan'
+  gem "omniauth"
+  gem 'omniauth-twitter'
 end
 
 # To use ActiveModel has_secure_password
