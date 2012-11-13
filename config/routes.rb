@@ -1,5 +1,7 @@
 SimpleBlog::Application.routes.draw do
 
+  get "sessions/create"
+
   devise_for :users
 
   root to: 'articles#index'
